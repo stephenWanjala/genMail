@@ -14,11 +14,12 @@ Clone the repository to your local machine:
     cd genMail
 
 Install the required dependencies:
+
     pip install csv
 
 Prepare the CSV file with student data:
 
-The CSV file should have the following columns: "StudentName," "Year," and "Reg No."
+The CSV file should have the following columns: `"StudentName,"` `"Year,"` and `"Reg No."`
 Each row in the CSV file should contain the student's full name, year, and registration number.
 Example CSV format:
 
