@@ -47,7 +47,7 @@ def main():
                 reg_no = row.get("Regno", "").strip()
                 student_list.append(Student(full_name, reg_no= reg_no))
 
-        corporate_domain = "kibu.ac.ke"
+        corporate_domain = "student.kibu.ac.ke"
         unique_emails, duplicate_emails = generate_unique_emails(student_list, corporate_domain)
 
         with open("unique_emails.csv", "w", newline='') as unique_file:
