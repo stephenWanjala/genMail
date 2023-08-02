@@ -13,6 +13,15 @@ class Student:
         reg_no_without_slashes = self.reg_no.replace("/", "")
         email = f"{reg_no_without_slashes}{self.year}@{corporate_domain}".lower()
         return email
+    def get_first_name(self):
+        return self.full_name.split()[0]
+
+    def get_last_name(self):
+        return self.full_name.split()[-1]
+
+    def get_middle_name(self):
+        names = self.full_name.split()
+        return names[1].lower() if len(names) > 2 else ""
 
 def generate_unique_emails(student_list, corporate_domain):
     email_map = {}
@@ -36,7 +45,7 @@ def generate_unique_emails(student_list, corporate_domain):
     return unique_emails, duplicate_emails
 
 def main():
-    csv_file = "students.csv"
+    csv_file = "stud.csv"
     student_list = []
 
     try:
@@ -64,13 +73,13 @@ def main():
 
         with open("student_details.csv", "w", newline='') as student_details_file:
             writer = csv.writer(student_details_file)
-            writer.writerow(["First Name", "Last Name", "Email"])
+            writer.writerow(["First Name", "Middle Name", "Last Name","EMail"])
             for student in student_list:
-                names = student.full_name.split()
-                first_name = names[0]
-                last_name = names[-1]
+                first_name = student.get_first_name()
+                middle_name = student.get_middle_name()
+                last_name = student.get_last_name()
                 email = student.generate_email(corporate_domain)
-                writer.writerow([first_name, last_name, email])
+                writer.writerow([first_name, middle_name, last_name,email])
 
         print("Valid emails written to unique_emails.csv")
         print("Duplicate emails written to duplicate_emails.csv")
